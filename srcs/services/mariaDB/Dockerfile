@@ -5,7 +5,11 @@ RUN apt update \
     && apt install -y mariadb-server
 
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
-COPY init.sql /etc/mysql/init.sql
-RUN mkdir /run/mysql
+COPY init.sql /etc/mysql/init/sql
+RUN chmod 777 /etc/mysql/init/sql
+RUN mkdir /run/mysqld
 
-cmd ["mysqld"]
+#CMD ["sh", "-c", "while true; do sleep 1000; done"]
+
+#CMD ["tail" "-f" "/dev/null"]
+CMD  ["mysqld"]
