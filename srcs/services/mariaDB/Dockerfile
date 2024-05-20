@@ -7,9 +7,11 @@ RUN apt update \
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY init.sql /etc/mysql/init/sql
 RUN chmod 777 /etc/mysql/init/sql
-RUN mkdir /run/mysqld
+COPY script.sh .
+RUN mkdir /run/mysqld && chmod +x script.sh
 
 #CMD ["sh", "-c", "while true; do sleep 1000; done"]
 
 #CMD ["tail" "-f" "/dev/null"]
-CMD  ["mysqld"]
+CMD  ["./script.sh"]
+
