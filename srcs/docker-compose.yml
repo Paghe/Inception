@@ -14,6 +14,7 @@ services:
       - ./web:/var/www/html
     networks:
       - inception
+    restart: always
   wordpress:
     build: services/wordpress/.
     container_name: wp
@@ -23,6 +24,7 @@ services:
       - ./web:/var/www/html
     networks:
       - inception
+    restart: always
   mariadb:
     build : services/mariaDB/.
     container_name: mariadb
@@ -30,5 +32,6 @@ services:
       - ./database:/var/lib/mysql
     networks:
       - inception
+    restart: always
 networks:
   inception:
