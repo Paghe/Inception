@@ -22,7 +22,7 @@
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name _;
+    server_name ${DOMAIN_NAME};
 
     # Redirect all HTTP requests to HTTPS
     return 301 https://$host$request_uri;
@@ -35,6 +35,7 @@ server {
 	# SSL configuration
 	#
 	listen 443 ssl default_server;
+	server_name ${DOMAIN_NAME};
 	listen [::]:443 ssl default_server;
 	ssl_certificate  /etc/ssl/certs/nginx.crt;
 	ssl_certificate_key /etc/ssl/private/nginx.key;
