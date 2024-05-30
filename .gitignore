@@ -1,1 +1,3 @@
 srcs/.env
+srcs/web
+srcs/database
