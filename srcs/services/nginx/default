@@ -20,15 +20,6 @@
 #
 #
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    server_name ${DOMAIN_NAME};
-
-    # Redirect all HTTP requests to HTTPS
-    return 301 https://$host$request_uri;
-}
-
-server {
 	#listen 80 default_server;
 	#listen [::]:80 default_server;
 
