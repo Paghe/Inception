@@ -1,15 +1,25 @@
+
 FROM debian:bullseye
 
-RUN apt update \
-    && apt upgrade -y \
-    && apt install -y mariadb-server
+# Install MariaDB server
+RUN apt-get update -y \
+	&& apt-get upgrade -y \
+	&& apt-get install -y mariadb-server \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
 
-COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
-COPY expand.sh .
-COPY init.sql /etc/mysql/init/sql
-RUN chmod 777 /etc/mysql/init/sql
-COPY script.sh .
-RUN mkdir /run/mysqld && chmod +x script.sh
-RUN  chmod +x expand.sh
-CMD  ["./expand.sh"]
-#CMD  ["tail", "-f", "/dev/null"]
+# Copy MariaDB configuration file
+COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY expand.sh /tmp/init.sh
+RUN chmod +x /tmp/init.sh
+# Expose MariaDB port
+EXPOSE 3306
+
+# Create necessary directories and set permissions
+RUN mkdir -p /run/mysqld \
+	&& chown -R mysql:mysql /var/lib/mysql /run/mysqld \
+	&& rm -f /run/mysqld/mysqld.sock
+
+
+# Run the initialization script during container startup
+ENTRYPOINT ["/tmp/init.sh"]
