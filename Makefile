@@ -25,7 +25,11 @@ stop:
 clean:		
 		@echo "Clearing the cache for $(NAME)..."
 		docker system prune -a -f
-		
+
+re:
+		docker-compose -f $(COMPOSE) down
+		docker system prune -a -f
+		docker-compose -f $(COMPOSE) up -d
 logs:
 		@echo "Viewing logs of Docker for $(NAME)..."
 		docker-compose -f $(COMPOSE) logs

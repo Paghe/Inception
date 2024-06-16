@@ -10,33 +10,54 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./web:/var/www/html
+      - /Users/apaghera/Documents/data/web:/var/www/html
     env_file:
       - .env
     networks:
       - inception
     restart: always
+
   wordpress:
     build: services/wordpress/.
     container_name: wp
     depends_on:
       - mariadb
     volumes:
-      - ./web:/var/www/html
+        - /Users/apaghera/Documents/data/web:/var/www/html
     env_file:
       - .env
     networks:
       - inception
     restart: always
+
   mariadb:
-    build : services/mariaDB/.
+    build: services/mariaDB/.
     container_name: mariadb
     volumes:
-      - ./database:/var/lib/mysql
+      - /Users/apaghera/Documents/data/database:/var/lib/mysql
     env_file:
       - .env
     networks:
       - inception
     restart: always
+
+    #volumes:
+    #wp:
+    #driver: local
+    #driver_opts:
+    #type: none
+    # o: bind
+    # device: /Users/apaghera/Documents/Inception/srcs/web
+  
+    #mariadb:
+    # driver: local
+    # driver_opts:
+    #type: none
+    # o: bind
+    # device: /Users/apaghera/Documents/Inception/srcs/database
+
+      
+
 networks:
   inception:
+

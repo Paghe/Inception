@@ -6,7 +6,7 @@ RUN apt update \
     php7.4-mysql \
     curl \
     wget \
-	wordpress
+	mariadb-client
 
 COPY www.conf /etc/php/7.4/fpm/pool.d/.
 
