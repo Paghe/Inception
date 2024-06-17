@@ -7,7 +7,10 @@ RUN apt-get update -y \
 
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
 
-RUN mkdir -p /run/mysqld
+RUN mkdir -p /run/mysqld \
+	 && chmod 777 /run/mysqld \
+	&& mkdir -p var/lib/mysql \
+	&& chmod 777 var/lib/mysql
 
 COPY expand.sh init.sh
 RUN chmod +x init.sh
@@ -15,5 +18,5 @@ RUN chmod +x init.sh
 EXPOSE 3306
 
 # Run the initialization script during container startup
-CMD ["/bin/bash"]
-#CMD ["/tmp/init.sh"]
+#CMD ["/bin/bash"]
+CMD ["./init.sh"]
