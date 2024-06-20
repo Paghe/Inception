@@ -41,19 +41,19 @@ services:
     restart: always
 
 volumes:
-  wordpress:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /Users/apaghera/Documents/data/web
-
   mariadb:
     driver: local
     driver_opts:
       type: none
       o: bind
       device: /Users/apaghera/Documents/data/database
+
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/apaghera/Documents/data/web
 
 networks:
   inception:
