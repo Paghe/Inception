@@ -9,8 +9,8 @@ COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
 
 RUN mkdir -p /run/mysqld \
 	 && chmod 777 /run/mysqld \
-	&& mkdir -p var/lib/mysql \
-	&& chmod 777 var/lib/mysql
+	&& mkdir -p /var/lib/mysql \
+	&& chmod 777 /var/lib/mysql
 
 COPY expand.sh init.sh
 RUN chmod +x init.sh

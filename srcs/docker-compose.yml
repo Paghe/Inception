@@ -5,12 +5,11 @@ services:
     build: services/nginx/.
     container_name: nginx
     depends_on:
-      - mariadb
       - wordpress
     ports:
       - "443:443"
     volumes:
-      - /home/paghe/data/web:/var/www/html
+      - wordpress:/var/www/html
     env_file:
       - .env
     networks:
@@ -34,7 +33,7 @@ services:
     build: services/mariaDB/.
     container_name: mariadb
     volumes:
-      - /home/paghe/data/database:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     env_file:
       - .env
     networks:
@@ -42,22 +41,21 @@ services:
     restart: always
 
 volumes:
-  wordpress:  # Define the volume once here
+  wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/paghe/data/web
-  
-    #mariadb:
-    # driver: local
-    # driver_opts:
-    #type: none
-    # o: bind
-    # device: /Users/apaghera/Documents/Inception/srcs/database
+      device: /Users/apaghera/Documents/data/web
 
-      
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/apaghera/Documents/data/database
 
 networks:
   inception:
+
 

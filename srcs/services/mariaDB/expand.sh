@@ -10,11 +10,11 @@ NC='\033[0m' # No Color
 echo "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;" > /var/lib/mysql/init.sql
 echo "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';" >> /var/lib/mysql/init.sql
 echo "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';" >> /var/lib/mysql/init.sql
-echo "FLUSH PRIVILEGES;" >> /etc/mysql/init.sql
+echo "FLUSH PRIVILEGES;" >> /var/lib/mysql/init.sql
 
 echo -e "${GREEN}Init SQL file created${NC}"
 
-#chmod +x  /etc/mysql/init.sql
+chown -R mysql:mysql /var/lib/mysql
 
 mariadb-install-db
 

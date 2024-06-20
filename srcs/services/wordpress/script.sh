@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sleep 3
 # Download and install WP-CLI
 wget -qO /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x /usr/local/bin/wp
@@ -9,7 +10,6 @@ wget -q https://wordpress.org/latest.tar.gz -P /var/www \
     && tar -xzvf /var/www/latest.tar.gz -C /var/www --strip-components=1 \
     && rm /var/www/latest.tar.gz
 
-# Set directory permissions (adjust as necessary)
 chown -R www-data:www-data /var/www/html
 
 # Configure WordPress
