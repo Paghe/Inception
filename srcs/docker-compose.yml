@@ -46,14 +46,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /Users/apaghera/Documents/data/database
+      device: /home/apaghera/data/database
 
   wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /Users/apaghera/Documents/data/web
+      device: /home/apaghera/data/web
 
 networks:
   inception:
