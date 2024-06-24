@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   nginx:
-    build: services/nginx/.
+    build: requirements/nginx/.
     container_name: nginx
     depends_on:
       - wordpress
@@ -17,7 +17,7 @@ services:
     restart: always
 
   wordpress:
-    build: services/wordpress/.
+    build: requirements/wordpress/.
     container_name: wordpress
     depends_on:
       - mariadb
@@ -30,7 +30,7 @@ services:
     restart: always
 
   mariadb:
-    build: services/mariaDB/.
+    build: requirements/mariaDB/.
     container_name: mariadb
     volumes:
       - mariadb:/var/lib/mysql

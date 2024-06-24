@@ -42,18 +42,6 @@ else
     echo "WordPress is already downloaded."
 fi
 
-# Debugging step: List files in /var/www after download
-echo "Contents of /var/www after download:"
-ls -la /var/www
-
-# Debugging step: List files in /var/www/html after download
-echo "Contents of /var/www/html after download:"
-ls -la /var/www/html
-
-# Debugging step: List files in /var/www/html after setting permissions
-echo "Contents of /var/www/html after setting permissions:"
-ls -la /var/www/html/
-
 # Check if WordPress is already configured
 if [ ! -f /var/www/html/wp-config.php ]; then
     echo "Configuring WordPress..."

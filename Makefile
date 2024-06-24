@@ -2,11 +2,25 @@ NAME := Inception
 
 COMPOSE := srcs/docker-compose.yml
 
-build:
+check-env:
+	@if [ ! -f srcs/.env ]; then \
+		if [ -f /home/apaghera/.env ]; then \
+			mv /home/apaghera/.env srcs/.env; \
+			echo ".env file moved from /home/apaghera to srcs directory"; \
+		else \
+			echo "provide a .env file for docker-compose"; \
+			exit 1; \
+		fi \
+	else \
+		echo "file .env exists in srcs directory"; \
+	fi
+
+
+build: check-env
 		@echo "Building $(NAME)..."
 		docker-compose -f $(COMPOSE) build
 
-up:
+up: check-env
 		@echo "Starting $(NAME)..."
 		docker-compose -f $(COMPOSE) up -d
 
